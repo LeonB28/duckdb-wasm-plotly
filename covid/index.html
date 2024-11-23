@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Covid-19 Daily Reports US</title>
+</head>
+
+<body>
+    <label for="metrics">Choose a Metric:</label>
+        <select id="metrics" name="metrics">
+          <option value="Case_Fatality_Ratio">Case Fatality Ratio</option>
+          <option value="Confirmed">Confirmed</option>
+          <option value="Deaths">Deaths</option>
+          <option value="Testing_Rate">Testing Rate</option>
+          <option value="Total_Test_Results">Total Test Results</option>
+        </select>
+    <div id="data"></div>
+</body>
+<script type="module">
+    import { getData } from './logic.js';
+    document.getElementById('metrics').addEventListener('change', changeMertic);
+
+    document.onload = getData('Case_Fatality_Ratio');
+    function changeMertic() {
+        var selectedMetric = document.getElementById("metrics").value;
+        getData(selectedMetric);
+    }
+</script>
+
+
+</html>
