@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Oil</title>
 </head>
+
 <body>
-$END$
+    <h1>Select Metric</h1>
+    <form id="checkboxForm">
+        <label><input type="checkbox" name="items" value="Gas Produced, MCF">Gas Produced, MCF</label>
+        <label><input type="checkbox" name="items" value="Water Produced, bbl">Water Produced, bbl</label>
+        <label><input type="checkbox" name="items" value="Oil Produced, bbl">Oil Produced, bbl</label>
+    </form>
+    <div id="data"></div>
 </body>
+<script type="module">
+    import { loadDataScatter } from './logic.js';
+    document.getElementById('checkboxForm').addEventListener('change', changeChart);
+
+    function changeChart() {
+         const form = document.getElementById('checkboxForm');
+        const selected = Array.from(form.elements['items'])
+            .filter(checkbox => checkbox.checked)
+            .map(checkbox => checkbox.value)
+        loadDataScatter(selected);
+    }
+</script>
+
+
 </html>
